@@ -19,6 +19,10 @@ Project ini dibuat sebagai portfolio backend menggunakan Node.js, Express, MySQL
 * Create Task
 * Get All Tasks
 * Get Task by ID
+* GET /tasks?page=1&limit=10 (pagination)
+* GET /tasks?status=pending (search by status)
+* GET /tasks?search=node (search)
+* GET /tasks?page=1&limit=10&status=completed (limit page 10)
 * Update Task
 * Delete Task
 
@@ -121,6 +125,10 @@ Response:
 ### Get All Tasks
 
 GET /tasks
+GET /tasks?page=1&limit=10
+GET /tasks?status=pending
+GET /tasks?search=node
+GET /tasks?page=1&limit=10&status=completed
 
 Header:
 
