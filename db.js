@@ -1,10 +1,13 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
-const pool = mysql.createPool({
+const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "", // jika XAMPP default kosong
-  database: "task_api"
+  password: "",
+  database: "task_api",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-module.exports = pool.promise();
+module.exports = db;
