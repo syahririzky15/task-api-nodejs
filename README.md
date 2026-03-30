@@ -1,114 +1,124 @@
 # Task API - Node.js Express
 
-REST API sederhana untuk manajemen task dengan autentikasi JWT.
-Project ini dibuat sebagai portfolio backend menggunakan Node.js, Express, MySQL, dan JSON Web Token.
+REST API untuk manajemen task dengan autentikasi JWT.
+Project ini dibuat sebagai portfolio backend dengan fitur pagination, filtering, searching, dan authentication.
 
-## Tech Stack
+---
+
+## 🚀 Tech Stack
 
 * Node.js
 * Express.js
 * MySQL
-* JWT Authentication
+* JSON Web Token (JWT)
 * bcryptjs
-* Postman
 
-## Features
+---
 
-* User Registration
-* User Login (JWT Authentication)
-* Create Task
-* Get All Tasks
-* Get Task by ID
-* GET /tasks?page=1&limit=10 (pagination)
-* GET /tasks?status=pending (search by status)
-* GET /tasks?search=node (search)
-* GET /tasks?page=1&limit=10&status=completed (limit page 10)
-* Update Task
-* Delete Task
+## ✨ Features
 
-## Project Structure
+* User Authentication (Register & Login)
+* JWT Authorization
+* CRUD Task
+* Pagination (page & limit)
+* Filtering by status (pending / completed)
+* Search by title
+* Sorting (asc / desc)
+
+---
+
+## 📁 Project Structure
 
 ```
 task-api
-│
 ├── controllers
-│   └── tasksController.js
-│
-├── middleware
-│   └── auth.js
-│
 ├── models
-│   └── taskModel.js
-│
 ├── routes
-│   └── tasks.js
-│
+├── middleware
 ├── app.js
 ├── db.js
 ├── package.json
 └── task-api.postman_collection.json
 ```
 
-## Installation
+---
 
-Clone repository
+## ⚙️ Installation
+
+Clone repository:
 
 ```
 git clone https://github.com/syahririzky15/task-api-nodejs.git
 ```
 
-Masuk ke folder project
+Masuk ke folder project:
 
 ```
 cd task-api-nodejs
 ```
 
-Install dependencies
+Install dependencies:
 
 ```
 npm install
 ```
 
-Jalankan server
+Jalankan server:
 
 ```
 node app.js
 ```
 
-Server akan berjalan di:
+Server berjalan di:
 
 ```
 http://localhost:3000
 ```
 
-## API Endpoints
+---
 
-### Register User
+## 🔑 Authentication
 
+Gunakan JWT token di header:
+
+```
+Authorization: Bearer TOKEN
+```
+
+---
+
+## 📌 API Endpoints
+
+### 🔹 Register
+
+```
 POST /register
+```
 
 Body:
 
 ```
 {
-"name": "John",
-"email": "john@example.com",
-"password": "123456"
+  "name": "John",
+  "email": "john@example.com",
+  "password": "123456"
 }
 ```
 
 ---
 
-### Login
+### 🔹 Login
 
+```
 POST /login
+```
 
 Body:
 
 ```
 {
-"email": "john@example.com",
-"password": "123456"
+  "email": "john@example.com",
+  "password": "123456"
 }
 ```
 
@@ -116,31 +126,62 @@ Response:
 
 ```
 {
-"token": "JWT_TOKEN"
+  "token": "JWT_TOKEN"
 }
 ```
 
 ---
 
-### Get All Tasks
+## 📌 Task Endpoints
 
-GET /tasks
-GET /tasks?page=1&limit=10
-GET /tasks?status=pending
-GET /tasks?search=node
-GET /tasks?page=1&limit=10&status=completed
-
-Header:
+### 🔹 Get All Tasks
 
 ```
-Authorization: Bearer TOKEN
+GET /tasks
+```
+
+### Query Parameters
+
+| Parameter | Description         |
+| --------- | ------------------- |
+| page      | nomor halaman       |
+| limit     | jumlah data         |
+| status    | pending / completed |
+| search    | keyword title       |
+| sort      | field (id, title)   |
+| order     | asc / desc          |
+
+### Example Request
+
+```
+GET /tasks?page=1&limit=10&status=pending&search=node&sort=title&order=desc
+```
+
+### Example Response
+
+```
+{
+  "page": 1,
+  "limit": 10,
+  "total": 5,
+  "data": [
+    {
+      "id": 1,
+      "title": "Belajar Node",
+      "status": "pending",
+      "user_id": 11
+    }
+  ]
+}
 ```
 
 ---
 
-### Create Task
+### 🔹 Create Task
 
+```
 POST /tasks
+```
 
 Header:
 
@@ -152,34 +193,48 @@ Body:
 
 ```
 {
-"title": "Belajar Node.js",
-"description": "Membuat REST API"
+  "title": "Belajar Backend"
 }
 ```
 
 ---
 
-### Update Task
+### 🔹 Update Task
 
+```
 PUT /tasks/:id
+```
+
+Body:
+
+```
+{
+  "title": "Update Task",
+  "status": "completed"
+}
+```
 
 ---
 
-### Delete Task
+### 🔹 Delete Task
 
+```
 DELETE /tasks/:id
+```
 
 ---
 
-## API Testing
+## 🧪 Testing
 
-API dapat diuji menggunakan Postman dengan file collection yang tersedia di repository:
+Gunakan Postman:
 
 ```
 task-api.postman_collection.json
 ```
 
-## Author
+---
+
+## 👤 Author
 
 Syahri Rizki Ramadhan Harahap
 Informatics Graduate
