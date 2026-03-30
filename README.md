@@ -32,9 +32,14 @@ Project ini dibuat sebagai portfolio backend dengan fitur pagination, filtering,
 ```
 task-api
 ├── controllers
+  ├── taskController.js
 ├── models
+  ├── taskModel.js
 ├── routes
+  ├── tasks.js
 ├── middleware
+  ├── auth.js
+  ├── validation.js
 ├── app.js
 ├── db.js
 ├── package.json
